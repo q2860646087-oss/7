@@ -5,39 +5,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>你看到了什么？</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body { 
       text-align: center; 
-      font-family: sans-serif; 
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
       padding: 20px; 
-      background-color: #fff; 
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
+    
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
+    }
+    
     h1 { 
       color: #333; 
-      margin-top: 20px; 
+      margin-bottom: 20px;
+      font-size: 2rem;
     }
+    
     p { 
       color: #555; 
-      font-size: 1.2rem; 
+      font-size: 1.1rem; 
       line-height: 1.8;
-      margin: 10px auto; 
+      margin: 15px auto; 
       max-width: 700px;
     }
+    
     img { 
-      max-width: 95%; 
+      max-width: 100%; 
       height: auto; 
       margin-top: 20px; 
-      border: 2px solid #ccc; 
-      border-radius: 8px; 
+      border: 2px solid #ddd; 
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    img:hover {
+      transform: scale(1.02);
+    }
+    
+    .info-box {
+      background-color: #e8f4f8;
+      border-left: 4px solid #0066cc;
+      padding: 15px;
+      margin-top: 20px;
+      text-align: left;
+      border-radius: 4px;
+    }
+    
+    .info-box h3 {
+      color: #0066cc;
+      margin-bottom: 10px;
+    }
+    
+    .info-box ul {
+      margin-left: 20px;
+      color: #333;
+    }
+    
+    .info-box li {
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>你看到了什么？</h1>
-
-  <p>正常色觉的人看到的是 15。</p>
-  <p>红绿盲患者看到的是 17。</p>
-  <p>完全色盲的人什么都看不到。</p>
-
-  <img src="https://www.colour-blindness.com/CBTests/ishihara/Plate6A.gif" alt="色觉测试图">
+  <div class="container">
+    <h1>你看到了什么？</h1>
+    
+    <p><strong>这是一个色觉测试图（石原色盲检测图）</strong></p>
+    
+    <img src="https://www.colour-blindness.com/CBTests/ishihara/Plate6A.gif" alt="石原色盲检测图 6A" onerror="handleImageError()">
+    
+    <div class="info-box">
+      <h3>📊 测试结果解���：</h3>
+      <ul>
+        <li><strong>正常色觉：</strong>看到数字 <span style="color: #ff6b6b; font-weight: bold;">15</span></li>
+        <li><strong>红绿色盲患者：</strong>看到数字 <span style="color: #4ecdc4; font-weight: bold;">17</span></li>
+        <li><strong>完全色盲患者：</strong>什么都看不到</li>
+      </ul>
+    </div>
+    
+    <div class="info-box" style="background-color: #f0f8ff; border-left-color: #1e90ff; margin-top: 15px;">
+      <h3 style="color: #1e90ff;">💡 关于色盲：</h3>
+      <ul>
+        <li>红绿色盲是最常见的色盲类型，影响约 8% 的男性和 0.5% 的女性</li>
+        <li>石原色盲检测图是快速检测色觉异常的标准工具</li>
+        <li>如果结果异常，请咨询眼科专家进行正式检查</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    function handleImageError() {
+      console.error('图片加载失败');
+      const img = document.querySelector('img');
+      if (img) {
+        img.innerHTML = '<p style="color: red;">图片加载失败，请检查网络连接</p>';
+      }
+    }
+  </script>
 </body>
 </html>
